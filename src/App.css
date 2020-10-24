@@ -12,3 +12,55 @@
   margin: 0 auto;
   border-radius: 5px;
 }
+
+.nav {
+  border-bottom: 2px solid #343940;
+}
+
+.nav__items {
+  margin: 0 auto;
+  padding-top: 15px;
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+}
+
+.nav__item {
+  color: #777d86;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 2.5rem;
+  margin: 0 10px;
+  padding: 0 10px;
+  cursor: pointer;
+  transition: color .2s linear;
+  position: relative;
+}
+
+
+.nav__item:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #e55c8a;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity .2s linear;
+}
+
+.nav__item:hover {
+  color: #d3dee9;
+}
+
+.nav__item-active {
+  color: #d3dee9;
+}
+
+.nav__item:hover:after,
+.nav__item.nav__item-active:after {
+    opacity: 1;
+}
