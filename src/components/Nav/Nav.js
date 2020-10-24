@@ -1,19 +1,22 @@
 import React from 'react';
 import './Nav.css';
 
-const Nav = ({ navItems }) => {
+const Nav = ({ navItems, togglePeriod }) => {
   const elements = navItems
   .sort((a, b) => {
       return(a.id - b.id);
   })
   .map((item) => {
-      let className = 'nav__item';
-      if (item.selected) {
-        className += ' nav__item-active';
-      }
-      return (
-        <li className={className} key={item.id}>{item.name}</li>
-      );
+    function handleNavItemClick() {
+      togglePeriod(item.id);
+    }
+    let className = 'nav__item';
+    if (item.selected) {
+      className += ' nav__item-active';
+    }
+    return (
+      <li className={className} key={item.id} onClick={handleNavItemClick}>{item.name}</li>
+    );
   });
   return (
       <nav className="nav">
