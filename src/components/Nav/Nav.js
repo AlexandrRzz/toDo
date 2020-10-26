@@ -1,14 +1,14 @@
 import React from 'react';
 import './Nav.css';
 
-const Nav = ({ navItems, togglePeriod }) => {
+const Nav = ({ navItems, toggleNav }) => {
   const elements = navItems
   .sort((a, b) => {
       return(a.id - b.id);
   })
   .map((item) => {
     function handleNavItemClick() {
-      togglePeriod(item.id);
+      toggleNav(item.id);
     }
     let className = 'nav__item';
     if (item.selected) {

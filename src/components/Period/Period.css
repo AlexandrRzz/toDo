@@ -1,0 +1,28 @@
+.date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+} 
+
+.date_caption {
+  align-items: center;
+  margin: 0 50px;
+}
+
+.date__header {
+  text-align: center;
+}
+
+.date__subheader {
+  color: #777d86;
+  text-align: center;
+}
+
+
+.date_slide {
+  cursor: pointer;
+  fill: #777d86;
+  height: 20px;
+  width: 20px;
+}
