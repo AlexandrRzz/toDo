@@ -1,20 +1,20 @@
 import React from 'react';
 import './Period.css';
 
-function formatDate(dateStart, dateEnd, period = 'Day' ) {
+function formatDate(dateStart, dateEnd, period = 1) {
   const monthNames = [
-    {fullName:"Jan", shortName:"Jan"},
-    {fullName:"Feb", shortName:"Feb"},
-    {fullName:"Mar", shortName:"Mar"},
-    {fullName:"Apr", shortName:"Apr"},
+    {fullName:"January", shortName:"Jan"},
+    {fullName:"February", shortName:"Feb"},
+    {fullName:"March", shortName:"Mar"},
+    {fullName:"April", shortName:"Apr"},
     {fullName:"May", shortName:"May"},
-    {fullName:"Jun", shortName:"Jun"},
-    {fullName:"Jul", shortName:"Jul"},
-    {fullName:"Aug", shortName:"Aug"},
-    {fullName:"Sep", shortName:"Sep"},
-    {fullName:"Oct", shortName:"Oct"},
-    {fullName:"Nov", shortName:"Nov"},
-    {fullName:"Dec", shortName:"Dec"}
+    {fullName:"June", shortName:"Jun"},
+    {fullName:"July", shortName:"Jul"},
+    {fullName:"August", shortName:"Aug"},
+    {fullName:"September", shortName:"Sep"},
+    {fullName:"October", shortName:"Oct"},
+    {fullName:"November", shortName:"Nov"},
+    {fullName:"December", shortName:"Dec"}
   ];
 
   const dayNames = [
@@ -27,25 +27,25 @@ function formatDate(dateStart, dateEnd, period = 'Day' ) {
     {fullName: "Saturday", shortName: "Sat"}
   ];
   switch(period) {
-    case 'Day':
+    case 1:
       return {
         header: dayNames[dateStart.getDay()].fullName, 
         subheader: `${monthNames[dateStart.getMonth()].shortName} ${dateStart.getDate()}, ${dateStart.getFullYear()}`
       }
-    case 'Week':
+    case 2:
         return {
           header: `X week of ${dateStart.getFullYear()}`, 
           subheader: `${monthNames[dateStart.getMonth()].shortName} ${dateStart.getDate()} - ${monthNames[dateEnd.getMonth()].shortName} ${dateEnd.getDate()}`
         } 
-    case 'Month':
+    case 3:
       return {
-        header: monthNames[dateStart.getMonth()].fullName, 
-        subheader: dateStart.getFullYear()
+        header: `${monthNames[dateStart.getMonth()].fullName}, ${dateStart.getFullYear()}`, 
+        subheader: `${monthNames[dateStart.getMonth()].shortName} ${dateStart.getDate()}, ${dayNames[dateStart.getDay()].shortName} - ${monthNames[dateEnd.getMonth()].shortName} ${dateEnd.getDate()}, ${dayNames[dateEnd.getDay()].shortName}`
       }   
-    case 'Year':
+    case 4:
       return {
         header: dateStart.getFullYear(), 
-        subheader: `${monthNames[dateStart.getMonth()]} ${dateStart.getDate()}, ${dayNames[dateStart.getDay()].shortName} - ${monthNames[dateEnd.getMonth()]} ${dateEnd.getDate()}, ${dayNames[dateEnd.getDay()].shortName}`
+        subheader: `${monthNames[dateStart.getMonth()].shortName} ${dateStart.getDate()}, ${dayNames[dateStart.getDay()].shortName} - ${monthNames[dateEnd.getMonth()].shortName} ${dateEnd.getDate()}, ${dayNames[dateEnd.getDay()].shortName}`
       }
     default:
       return {
@@ -56,8 +56,8 @@ function formatDate(dateStart, dateEnd, period = 'Day' ) {
 
 }
 
-export default function Period ({dateStart, dateEnd}) {
-  const periodName = formatDate(dateStart, dateEnd, "Day");
+export default function Period ({dateStart, dateEnd, period}) {
+  const periodName = formatDate(dateStart, dateEnd, period);
   return (
     <div className="date">
     <svg

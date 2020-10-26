@@ -27,7 +27,7 @@ function App() {
   ];
 
   const [fixNavItem, setFixNavItem] = useState();
-  const [fixInterval, setfixInterval] = useState({dateStart:new Date(), dateEnd: new Date});
+  const [fixInterval, setfixInterval] = useState({dateStart:new Date(), dateEnd: new Date()});
 
   useEffect(() => {
     const storedFixNavItem = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_NAV)) || 1;
@@ -39,11 +39,27 @@ function App() {
   }, [fixNavItem])
 
   function toggleNav(id) {
+    let dateStart = new Date();
+    let dateEnd = new Date();
+    switch (id) {
+      case 2:
+        dateStart = new Date(2020, 9, 26);
+        dateEnd = new Date(2020,10, 1);
+        break;
+      case 3:
+        dateStart = new Date(2020, 9, 1);
+        dateEnd = new Date(2020, 9, 31);
+        break;
+      case 4:
+        dateStart = new Date(2020, 0, 1);
+        dateEnd = new Date(2020, 11, 31);
+        break;
+      default:
+        break;
+    }  
     setFixNavItem(id);
+    setfixInterval({dateStart, dateEnd});
   }
-
-  let date_p = new Date();
-
   return (
     <div className="App">
       <div className="wrapper">
@@ -57,6 +73,7 @@ function App() {
         <Period 
           dateStart={fixInterval.dateStart}
           dateEnd={fixInterval.dateEnd}
+          period={fixNavItem}
         />
       </div>
     </div>
