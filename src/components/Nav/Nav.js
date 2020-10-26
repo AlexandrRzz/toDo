@@ -1,7 +1,8 @@
 import React from 'react';
 import './Nav.css';
 
-const Nav = ({ navItems, toggleNav }) => {
+const Nav = ({ navItems, fixNavItem, toggleNav }) => {
+  
   const elements = navItems
   .sort((a, b) => {
       return(a.id - b.id);
@@ -11,7 +12,7 @@ const Nav = ({ navItems, toggleNav }) => {
       toggleNav(item.id);
     }
     let className = 'nav__item';
-    if (item.selected) {
+    if (item.id === fixNavItem) {
       className += ' nav__item-active';
     }
     return (
