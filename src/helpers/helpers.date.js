@@ -22,22 +22,35 @@ export function getWeekEnd(date) {
 }
 
 export function getMonthStart(date) {
-  date.setDate(1);
-  return date; 
+  let date_p = new Date(date.getTime());
+  date_p.setDate(1);
+  return date_p; 
 }
 
 export function getMonthEnd(date) {
-  const month = date.getMonth();
+  let date_p = new Date(date.getTime());
+  const month = date_p.getMonth();
   if (month === 1) {
-    date = addDays(date.setMonth(2, 1), -1);  
+    date_p = addDays(date_p.setMonth(2, 1), -1);  
   } else if (month === 0 || month === 2 || month === 4 || month === 6 || month === 7 || month === 9 || month === 11) {
-    date.setDate(31);  
+    date_p.setDate(31);  
   } else {
-    date.setDate(30);  
+    date_p.setDate(30);  
   }
-  return date; 
+  return date_p; 
 }
 
+export function getYearStart(date) {
+  let date_p = new Date(date.getTime());
+  date_p.setMonth(0, 1);
+  return date_p; 
+}
+
+export function getYearEnd(date) {
+  let date_p = new Date(date.getTime());
+  date_p.setMonth(11, 31);
+  return date_p; 
+}
 
 export function getWeek(date) {
   const date_p = new Date(date.getTime());
