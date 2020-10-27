@@ -3,6 +3,7 @@ import './App.css';
 
 import Nav from '../Nav/Nav';
 import Period from '../Period/Period';
+import Newtask from '../Newtask/Newtask';
 import {addDays,getWeekStart, getWeekEnd, getMonthStart, getMonthEnd, getYearStart, getYearEnd} from '../../helpers/helpers.date';
 
 const LOCAL_STORAGE_KEY_TODO = 'todoApp.todoData';
@@ -30,7 +31,6 @@ function App() {
     fixInterval: { dateStart: new Date(), dateEnd: new Date() },});
 
   useEffect(() => {
-    console.log("useEffect");
     const storedToDoData = JSON.parse(
       localStorage.getItem(LOCAL_STORAGE_KEY_TODO), function(key, value) {
         if (key === 'dateStart' || key === 'dateEnd') return new Date(value);
@@ -40,12 +40,10 @@ function App() {
       fixNavItem: 1,
       fixInterval: { dateStart: new Date(), dateEnd: new Date() },
     };
-    console.log("useEffect",storedToDoData);
     setToDoData(storedToDoData);
   }, []);
 
   useEffect(() => {
-    console.log("useEffect before saving",toDoData);
     localStorage.setItem(LOCAL_STORAGE_KEY_TODO, JSON.stringify(toDoData))
   }, [toDoData])
 
@@ -121,7 +119,6 @@ function App() {
       fixInterval: { dateStart, dateEnd },
     });     
   }
-  console.log("before rendering", toDoData);
   return (
     <div className="App">
       <div className="wrapper">
@@ -139,6 +136,9 @@ function App() {
           period={toDoData.fixNavItem}
           toglePeriod={toglePeriod}
         />
+        <div className="taskswrapper">
+          <Newtask/>
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,21 @@
+.newtask__input {
+  width: 100%;
+  font-size: 14px;
+  background-color: #343a40;
+  color: #6b7179;
+  border: 1px solid #2e3238;
+  border-radius: 2px;
+  background-image: url('../../svg/text-align-left.svg');
+  background-repeat: no-repeat;
+  
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: calc(1.5em + 0.75rem);
+  background-position: 1%;
+  background-size: 1rem 1rem;
+}
+
+.newtask__input:focus {
+  border: 1px solid #777d86;
+  outline: none ;
+}
