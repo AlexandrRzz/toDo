@@ -1,5 +1,6 @@
 import React from 'react';
 import './Period.css';
+import {getWeek} from '../../helpers/helpers.date';
 
 function formatDate(dateStart, dateEnd, period = 1) {
   const monthNames = [
@@ -34,7 +35,7 @@ function formatDate(dateStart, dateEnd, period = 1) {
       }
     case 2:
         return {
-          header: `X week of ${dateStart.getFullYear()}`, 
+          header: `${getWeek(dateStart)} week of ${dateStart.getFullYear()}`, 
           subheader: `${monthNames[dateStart.getMonth()].shortName} ${dateStart.getDate()} - ${monthNames[dateEnd.getMonth()].shortName} ${dateEnd.getDate()}`
         } 
     case 3:

@@ -3,6 +3,7 @@ import './App.css';
 
 import Nav from '../Nav/Nav';
 import Period from '../Period/Period';
+import {getWeekStart, getWeekEnd, getMonthStart} from '../../helpers/helpers.date';
 
 const LOCAL_STORAGE_KEY_NAV = 'todoApp.nav';
 
@@ -43,11 +44,11 @@ function App() {
     let dateEnd = new Date();
     switch (id) {
       case 2:
-        dateStart = new Date(2020, 9, 26);
-        dateEnd = new Date(2020,10, 1);
+        dateStart = getWeekStart(dateStart);
+        dateEnd = getWeekEnd(dateEnd);
         break;
       case 3:
-        dateStart = new Date(2020, 9, 1);
+        dateStart = getMonthStart(dateStart);
         dateEnd = new Date(2020, 9, 31);
         break;
       case 4:
