@@ -134,7 +134,6 @@ function App() {
   }
 
   function enterNewTask(taskText) {
-    console.log("enterNewTask:", taskText);
     const newToDo = {
       id: uuid(),
       done: false,
@@ -148,6 +147,19 @@ function App() {
       }
     }); 
   }
+
+  function togleTaskDone (id) {
+    setToDoData((prevToDoData) => {
+      const idx = prevToDoData.toDoTasks.findIndex(el => el.id === id);
+      const oldToDO = prevToDoData.toDoTasks[idx];
+      const newToDo = {...oldToDO, done: !oldToDO.done}
+      return {
+        ...prevToDoData ,
+        toDoTasks: [...prevToDoData.toDoTasks.slice(0, idx), newToDo, ...prevToDoData.toDoTasks.slice(idx + 1)],
+      }
+    }); 
+  }
+
   return (
     <div className="App">
       <div className="wrapper">
@@ -171,6 +183,7 @@ function App() {
           />
           <Tasks 
             tasks={toDoData.toDoTasks}
+            togleTaskDone={togleTaskDone}
           />
         </div>
       </div>

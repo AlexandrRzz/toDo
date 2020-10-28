@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Task ({task}) {
+export default function Task ({task,  togleTaskDone}) {
   const {id, done, pinned, text, memo} = task;
   let taskClassName = 'task';
   if (pinned) {
@@ -16,6 +16,7 @@ export default function Task ({task}) {
           name="taskstatus" 
           value="yes"
           defaultChecked ={done}
+          onChange={()=> togleTaskDone(id)}
         />
         <label className="task__desription" htmlFor={id}>
             {text}
