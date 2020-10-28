@@ -8,6 +8,8 @@ import Tasks from '../Tasks/Tasks';
 
 import {addDays,getWeekStart, getWeekEnd, getMonthStart, getMonthEnd, getYearStart, getYearEnd} from '../../helpers/helpers.date';
 
+import { v4 as uuid } from 'uuid';
+
 
 const LOCAL_STORAGE_KEY_TODO = 'todoApp.todoData';
 
@@ -72,10 +74,10 @@ function App() {
       text: 'task 6'
     }
   ];
+  const [toDoTasks, setToDoTasks] = useState(tasks);
 
   const [toDoData, setToDoData] = useState({fixNavItem: 1,
     fixInterval: { dateStart: new Date(), dateEnd: new Date() },});
-
   useEffect(() => {
     const storedToDoData = JSON.parse(
       localStorage.getItem(LOCAL_STORAGE_KEY_TODO), function(key, value) {
@@ -166,6 +168,17 @@ function App() {
     });     
   }
 
+  function enterNewTask(taskText) {
+    console.log("enterNewTask:", taskText);
+    const newToDo = {
+      id: uuid(),
+      done: false,
+      pinned: false,
+      text: taskText,
+    };
+    setToDoTasks((prevToDoTasks) => [...prevToDoTasks, newToDo]);
+  }
+
   return (
     <div className="App">
       <div className="wrapper">
@@ -184,9 +197,12 @@ function App() {
           toglePeriod={toglePeriod}
         />
         <div className="taskswrapper">
-          <Newtask/>
+          <Newtask
+            enterNewTask={enterNewTask}
+            //ref={newToDoName}
+          />
           <Tasks 
-            tasks={tasks}
+            tasks={toDoTasks}
           />
         </div>
       </div>
