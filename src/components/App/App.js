@@ -33,60 +33,20 @@ function App() {
     }
   ];
 
-  const tasks = [
-    {
-      id: 1,
-      done: false,
-      pinned: true,
-      text: 'task 1',
-      memo: 'memo for task1'
-    },
-    {
-      id: 2,
-      done: true,
-      pinned: true,
-      text: 'task 2',
-      memo: 'memo for task2'
-    },
-    {
-      id: 3,
-      done: false,
-      pinned: false,
-      text: 'task 3'
-    },
-    {
-      id: 4,
-      done: true,
-      pinned: true,
-      text: 'task 4'
-    },
-    {
-      id: 5,
-      done: true,
-      pinned: false,
-      text: 'task 5',
-      memo: 'memo for task1'
-    },
-    {
-      id: 6,
-      done: true,
-      pinned: false,
-      text: 'task 6'
-    }
-  ];
-  const [toDoTasks, setToDoTasks] = useState(tasks);
-
   const [toDoData, setToDoData] = useState({fixNavItem: 1,
-    fixInterval: { dateStart: new Date(), dateEnd: new Date() },});
+    fixInterval: { dateStart: new Date(), dateEnd: new Date() }, toDoTasks: [] });
+
   useEffect(() => {
     const storedToDoData = JSON.parse(
-      localStorage.getItem(LOCAL_STORAGE_KEY_TODO), function(key, value) {
-        if (key === 'dateStart' || key === 'dateEnd') return new Date(value);
+      localStorage.getItem(LOCAL_STORAGE_KEY_TODO),
+      function (key, value) {
+        if (key === "dateStart" || key === "dateEnd") return new Date(value);
         return value;
       }
     ) || {
       fixNavItem: 1,
-      fixInterval: { dateStart: new Date(), dateEnd: new Date() },
+      fixInterval: { dateStart: new Date(), dateEnd: new Date() , dateEnd2: new Date()},
+      oDoTasks: [],
     };
     setToDoData(storedToDoData);
   }, []);
@@ -114,10 +74,13 @@ function App() {
       default:
         break;
     }
-    setToDoData({
-      fixNavItem: id,
-      fixInterval: { dateStart, dateEnd },
-    });  
+    setToDoData((prevToDoData) => {
+      return {
+        ...prevToDoData,
+        fixNavItem: id,
+        fixInterval: { dateStart, dateEnd },
+      }
+    });   
   }
 
   function toglePeriod(direction) {
@@ -162,10 +125,12 @@ function App() {
         break;
     }
     //setfixInterval({dateStart, dateEnd});
-    setToDoData({
-      ...toDoData,
-      fixInterval: { dateStart, dateEnd },
-    });     
+    setToDoData((prevToDoData) => {
+      return {
+        ...prevToDoData,
+        fixInterval: { dateStart, dateEnd },
+      }
+    });   
   }
 
   function enterNewTask(taskText) {
@@ -176,9 +141,13 @@ function App() {
       pinned: false,
       text: taskText,
     };
-    setToDoTasks((prevToDoTasks) => [...prevToDoTasks, newToDo]);
+    setToDoData((prevToDoData) => {
+      return {
+        ...prevToDoData,
+        toDoTasks: [...prevToDoData.toDoTasks, newToDo],
+      }
+    }); 
   }
-
   return (
     <div className="App">
       <div className="wrapper">
@@ -199,10 +168,9 @@ function App() {
         <div className="taskswrapper">
           <Newtask
             enterNewTask={enterNewTask}
-            //ref={newToDoName}
           />
           <Tasks 
-            tasks={toDoTasks}
+            tasks={toDoData.toDoTasks}
           />
         </div>
       </div>
