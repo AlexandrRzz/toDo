@@ -4,8 +4,12 @@
 }
 
 body {
-  margin: 0;
   font-family: PopRegular;
   color: #d3dee9;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

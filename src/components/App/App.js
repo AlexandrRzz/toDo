@@ -4,7 +4,10 @@ import './App.css';
 import Nav from '../Nav/Nav';
 import Period from '../Period/Period';
 import Newtask from '../Newtask/Newtask';
+import Tasks from '../Tasks/Tasks';
+
 import {addDays,getWeekStart, getWeekEnd, getMonthStart, getMonthEnd, getYearStart, getYearEnd} from '../../helpers/helpers.date';
+
 
 const LOCAL_STORAGE_KEY_TODO = 'todoApp.todoData';
 
@@ -27,6 +30,49 @@ function App() {
       name : 'Year',
     }
   ];
+
+  const tasks = [
+    {
+      id: 1,
+      done: false,
+      pinned: true,
+      text: 'task 1',
+      memo: 'memo for task1'
+    },
+    {
+      id: 2,
+      done: true,
+      pinned: true,
+      text: 'task 2',
+      memo: 'memo for task2'
+    },
+    {
+      id: 3,
+      done: false,
+      pinned: false,
+      text: 'task 3'
+    },
+    {
+      id: 4,
+      done: true,
+      pinned: true,
+      text: 'task 4'
+    },
+    {
+      id: 5,
+      done: true,
+      pinned: false,
+      text: 'task 5',
+      memo: 'memo for task1'
+    },
+    {
+      id: 6,
+      done: true,
+      pinned: false,
+      text: 'task 6'
+    }
+  ];
+
   const [toDoData, setToDoData] = useState({fixNavItem: 1,
     fixInterval: { dateStart: new Date(), dateEnd: new Date() },});
 
@@ -119,6 +165,7 @@ function App() {
       fixInterval: { dateStart, dateEnd },
     });     
   }
+
   return (
     <div className="App">
       <div className="wrapper">
@@ -138,6 +185,9 @@ function App() {
         />
         <div className="taskswrapper">
           <Newtask/>
+          <Tasks 
+            tasks={tasks}
+          />
         </div>
       </div>
     </div>
