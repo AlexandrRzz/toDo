@@ -45,8 +45,8 @@ function App() {
       }
     ) || {
       fixNavItem: 1,
-      fixInterval: { dateStart: new Date(), dateEnd: new Date() , dateEnd2: new Date()},
-      oDoTasks: [],
+      fixInterval: { dateStart: new Date(), dateEnd: new Date(),},
+      toDoTasks: [],
     };
     setToDoData(storedToDoData);
   }, []);
