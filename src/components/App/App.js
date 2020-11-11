@@ -160,6 +160,29 @@ function App() {
     }); 
   }
 
+  function togleTaskPin (id) {
+    setToDoData((prevToDoData) => {
+      const idx = prevToDoData.toDoTasks.findIndex(el => el.id === id);
+      const oldToDO = prevToDoData.toDoTasks[idx];
+      const newToDo = {...oldToDO, pinned: !oldToDO.pinned}
+      return {
+        ...prevToDoData ,
+        toDoTasks: [...prevToDoData.toDoTasks.slice(0, idx), newToDo, ...prevToDoData.toDoTasks.slice(idx + 1)],
+      }
+    }); 
+  }
+
+  function deleteTask (id) {
+    setToDoData((prevToDoData) => {
+      const idx = prevToDoData.toDoTasks.findIndex(el => el.id === id);
+      return {
+        ...prevToDoData ,
+        toDoTasks: [...prevToDoData.toDoTasks.slice(0, idx), ...prevToDoData.toDoTasks.slice(idx + 1)],
+      }
+    }); 
+
+  }
+
   return (
     <div className="App">
       <div className="wrapper">
@@ -184,6 +207,8 @@ function App() {
           <Tasks 
             tasks={toDoData.toDoTasks}
             togleTaskDone={togleTaskDone}
+            togleTaskPin={togleTaskPin}
+            deleteTask={deleteTask}
           />
         </div>
       </div>

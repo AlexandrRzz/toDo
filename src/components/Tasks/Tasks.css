@@ -4,6 +4,7 @@
 
 .task {
   padding: 8px 0;
+  position: relative;
 }
 
 .task--pinned {
@@ -29,6 +30,7 @@
 
 .task__menu {
   color: #a3acb9;
+  cursor: pointer;
 }
 
 .task__inner {

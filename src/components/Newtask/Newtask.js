@@ -10,6 +10,7 @@ export default function Newtask ({enterNewTask}) {
   }
   return (
     <div className="newtask">
+      <i className="fas fa-align-left newtask__icon"></i>
       <input 
         className="newtask__input" 
         type="text" 

@@ -1,0 +1,30 @@
+.menu {
+  border-radius: 5px;
+  color: #9da5ae;
+  background-color: #484f59;
+  font-size: 0.8rem;
+  position: absolute;
+  right: -7px;
+  z-index: 1;
+}
+
+.menu::before {
+  position: absolute;
+  content: " ";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 5px 5px 5px;
+  border-color: transparent transparent #484f59 transparent;
+  top: -5px;
+  right: 10px;
+}
+
+.menu__item {
+  cursor: pointer;
+  padding: 0.3rem 0.5rem;
+}
+
+.menu__caption {
+  padding-left: 0.5rem;
+}
