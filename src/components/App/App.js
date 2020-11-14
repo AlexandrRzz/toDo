@@ -36,6 +36,12 @@ function App() {
   const [toDoData, setToDoData] = useState({fixNavItem: 1,
     fixInterval: { dateStart: new Date(), dateEnd: new Date() }, toDoTasks: [] });
 
+  const [contextMenu, setContextMenu] = useState({
+    toDoId: "b2a90b85-20e1-4097-a867-7b2692afeb2a",
+    showContext: false,
+    showMemo: false,
+  })
+
   useEffect(() => {
     const storedToDoData = JSON.parse(
       localStorage.getItem(LOCAL_STORAGE_KEY_TODO),
@@ -209,6 +215,8 @@ function App() {
             togleTaskDone={togleTaskDone}
             togleTaskPin={togleTaskPin}
             deleteTask={deleteTask}
+            contextMenu={contextMenu}
+            setContextMenu={setContextMenu}
           />
         </div>
       </div>

@@ -1,18 +1,34 @@
-import React, { useState } from 'react';
-import TaskMenu from './../TaskMenu/TaskMenu'
+import TaskMenu from './../TaskMenu/TaskMenu';
+import TaskMemo from './../TaskMemo/TaskMemo';
 
 
-export default function Task ({task,  togleTaskDone, togleTaskPin, deleteTask}) {
+export default function Task ({task,  togleTaskDone, togleTaskPin, deleteTask, showContextMenu, showMemoMenu, setContextMenu}) {
   const {id, done, pinned, text, memo} = task;
   let taskClassName = 'task';
   if (pinned) {
     taskClassName += ' task--pinned';
   }
 
-  const [taskMenu, setTaskMenu] = useState({show: false});
   let menu;
-  if (taskMenu.show) {
-    menu = <TaskMenu setTaskMenu={setTaskMenu} togleTaskPin={togleTaskPin} deleteTask={deleteTask} task_id={id} pinned={pinned}/>;
+  if (showContextMenu) {
+    menu = (
+      <TaskMenu
+        setContextMenu={setContextMenu}
+        togleTaskPin={togleTaskPin}
+        deleteTask={deleteTask}
+        task_id={id}
+        pinned={pinned}
+      />
+    );
+  }
+  let memoForm;
+  if (showMemoMenu) {
+    memoForm = (
+      <TaskMemo 
+        task_id={id} 
+        setContextMenu={setContextMenu}
+      />
+    );
   }
 
   return (
@@ -30,13 +46,20 @@ export default function Task ({task,  togleTaskDone, togleTaskPin, deleteTask}) 
         <label className="task__desription" htmlFor={id}>
             {text}
         </label>
-        <i 
+        <i
           className="fas fa-ellipsis-h task__menu"
-          onClick={()=>{setTaskMenu({show: true})}}
+          onClick={() => {
+            setContextMenu({
+              toDoId: id,
+              showContext: !showContextMenu,
+              showMemo: false,
+            });
+          }}
         ></i>
       </div>
       <p className="task__memo">{memo}</p>
       {menu}
+      {memoForm}
       
     </div>
   )

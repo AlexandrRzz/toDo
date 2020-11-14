@@ -1,0 +1,34 @@
+.memo {
+  padding-top: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.memo__input {
+  flex-grow: 1;
+  font-size: 14px;
+  background-color: #343a40;
+  color: #6b7179;
+  border: 1px solid #2e3238;
+  border-radius: 0.25em;
+
+  padding: 5px;
+  position: relative;
+}
+
+.memo__input:focus {
+  border: 1px solid #777d86;
+  outline: none;
+}
+
+.memo__button {
+  color: #f06292;
+  padding: 0px;
+  width: 25px;
+  height: 25px;
+  margin-left: 5px;
+  border: 1px solid #2e3238;
+  background-color: #484f59;
+  border-radius: 0.25em;
+  cursor: pointer;
+}
