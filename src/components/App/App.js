@@ -189,6 +189,18 @@ function App() {
 
   }
 
+  function editTaskMemo (id, text) {
+    setToDoData((prevToDoData) => {
+      const idx = prevToDoData.toDoTasks.findIndex(el => el.id === id);
+      const oldToDO = prevToDoData.toDoTasks[idx];
+      const newToDo = {...oldToDO, memo: text}
+      return {
+        ...prevToDoData ,
+        toDoTasks: [...prevToDoData.toDoTasks.slice(0, idx), newToDo, ...prevToDoData.toDoTasks.slice(idx + 1)],
+      }
+    }); 
+  }
+
   return (
     <div className="App">
       <div className="wrapper">
@@ -217,6 +229,7 @@ function App() {
             deleteTask={deleteTask}
             contextMenu={contextMenu}
             setContextMenu={setContextMenu}
+            editTaskMemo={editTaskMemo}
           />
         </div>
       </div>

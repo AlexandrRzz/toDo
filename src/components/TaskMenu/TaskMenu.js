@@ -1,8 +1,9 @@
 import React from 'react';
 import './TaskMenu.css';
 
-export default function TaskMenu({setContextMenu, togleTaskPin, deleteTask, task_id, pinned}) {
+export default function TaskMenu({setContextMenu, togleTaskPin, deleteTask, task_id, pinned, memo}) {
   //console.log(props);
+  console.log(memo)
   return (
     <div className="menu">
       <div 
@@ -30,7 +31,7 @@ export default function TaskMenu({setContextMenu, togleTaskPin, deleteTask, task
         }}
       >
         <i className="far fa-sticky-note menu__icon"></i>
-        <span className="menu__caption">Ad a memo</span>
+        <span className="menu__caption">{memo ? "Edit memo" : "Ad a memo"}</span>
       </div>
       <div 
         className="menu__item"

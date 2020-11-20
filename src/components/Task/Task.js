@@ -2,7 +2,7 @@ import TaskMenu from './../TaskMenu/TaskMenu';
 import TaskMemo from './../TaskMemo/TaskMemo';
 
 
-export default function Task ({task,  togleTaskDone, togleTaskPin, deleteTask, showContextMenu, showMemoMenu, setContextMenu}) {
+export default function Task ({task,  togleTaskDone, togleTaskPin, deleteTask, showContextMenu, showMemoMenu, setContextMenu, editTaskMemo}) {
   const {id, done, pinned, text, memo} = task;
   let taskClassName = 'task';
   if (pinned) {
@@ -18,6 +18,7 @@ export default function Task ({task,  togleTaskDone, togleTaskPin, deleteTask, s
         deleteTask={deleteTask}
         task_id={id}
         pinned={pinned}
+        memo={memo}
       />
     );
   }
@@ -27,6 +28,8 @@ export default function Task ({task,  togleTaskDone, togleTaskPin, deleteTask, s
       <TaskMemo 
         task_id={id} 
         setContextMenu={setContextMenu}
+        editTaskMemo={editTaskMemo}
+        memo={memo}
       />
     );
   }
@@ -57,7 +60,7 @@ export default function Task ({task,  togleTaskDone, togleTaskPin, deleteTask, s
           }}
         ></i>
       </div>
-      <p className="task__memo">{memo}</p>
+      <p className="task__memo">{!showMemoMenu && memo}</p>
       {menu}
       {memoForm}
       

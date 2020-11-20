@@ -4,7 +4,7 @@ import './Tasks.css';
 import Task from './../Task/Task';
 
 
-export default function Tasks ({tasks, togleTaskDone, togleTaskPin, deleteTask, contextMenu, setContextMenu}) {
+export default function Tasks ({tasks, togleTaskDone, togleTaskPin, deleteTask, contextMenu, setContextMenu, editTaskMemo}) {
 
 const {toDoId, showContext, showMemo} = contextMenu;
 
@@ -21,6 +21,7 @@ let pinnedTasksList = tasks
         setContextMenu={setContextMenu}
         showContextMenu={toDoId === el.id ? showContext : false}
         showMemoMenu={toDoId === el.id ? showMemo : false}
+        editTaskMemo={editTaskMemo}
       />
     );
   });
@@ -39,6 +40,7 @@ let pinnedTasksList = tasks
         setContextMenu={setContextMenu}
         showContextMenu={toDoId === el.id ? showContext : false}
         showMemoMenu={toDoId === el.id ? showMemo : false}
+        editTaskMemo={editTaskMemo}
       />
     );
   });
