@@ -145,6 +145,7 @@ function App() {
       done: false,
       pinned: false,
       text: taskText,
+      date: toDoData.fixInterval.dateStart, 
     };
     setToDoData((prevToDoData) => {
       return {
