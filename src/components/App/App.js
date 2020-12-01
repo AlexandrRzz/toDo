@@ -225,6 +225,24 @@ function App() {
     })
   }
 
+
+  function groupTodo(todos) {
+    const resArr = [];
+    todos.forEach(element => {
+        const formatedDate = formatDate(element.date);
+        const found = resArr.find(el => el.date === formatedDate);
+        if (found) {
+            found.todos.push(element)
+        } else {
+            resArr.push({
+                date: formatedDate, 
+                todos: [element]
+            })
+        }
+    });
+    return resArr
+  }
+
   return (
     <div className="App">
       <div className="wrapper">
@@ -247,13 +265,14 @@ function App() {
             enterNewTask={enterNewTask}
           />
           <Tasks 
-            tasks={filterTodo(toDoData.toDoTasks, toDoData.fixInterval.dateStart, toDoData.fixInterval.dateEnd)}
+            tasks={groupTodo(filterTodo(toDoData.toDoTasks, toDoData.fixInterval.dateStart, toDoData.fixInterval.dateEnd))}
             togleTaskDone={togleTaskDone}
             togleTaskPin={togleTaskPin}
             deleteTask={deleteTask}
             contextMenu={contextMenu}
             setContextMenu={setContextMenu}
             editTaskMemo={editTaskMemo}
+            showDate={toDoData.fixNavItem === 1 ? false : true}
           />
         </div>
       </div>

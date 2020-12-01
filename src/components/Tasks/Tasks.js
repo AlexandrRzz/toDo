@@ -4,15 +4,20 @@ import './Tasks.css';
 import Task from './../Task/Task';
 
 
-export default function Tasks ({tasks, togleTaskDone, togleTaskPin, deleteTask, contextMenu, setContextMenu, editTaskMemo}) {
+export default function Tasks ({tasks, togleTaskDone, togleTaskPin, deleteTask, contextMenu, setContextMenu, editTaskMemo, showDate}) {
 
-const {toDoId, showContext, showMemo} = contextMenu;
+  const {toDoId, showContext, showMemo} = contextMenu;
 
-let pinnedTasksList = tasks
-  .filter((el) => el.pinned)
-  .map((el) => {
-    return (
-      <Task
+  let groupTasksList = tasks
+  .map((elem) => {
+    const date = elem.date;
+    const pinnedTasks = [];
+    const unPinnedTasks = [];
+    let arrToPush = pinnedTasks;
+
+    elem.todos
+    .forEach(el => {
+      const todo = <Task
         key={el.id}
         task={el}
         togleTaskDone={togleTaskDone}
@@ -23,37 +28,34 @@ let pinnedTasksList = tasks
         showMemoMenu={toDoId === el.id ? showMemo : false}
         editTaskMemo={editTaskMemo}
       />
-    );
-  });
 
+      arrToPush = el.pinned ? pinnedTasks : unPinnedTasks;
+      arrToPush.push(todo)
 
-  let unPinnedTasksList = tasks
-  .filter((el) => !el.pinned)
-  .map((el) => {
+    });
+    let pinnedTaskElement = null;
+    if (pinnedTasks.length > 0) {
+      pinnedTaskElement = <div className="tasks tasks--pinned">{pinnedTasks}</div>  
+    }
+    let dateElement = null;
+    if (showDate) {
+      dateElement = <p className="tasks__date">{date}</p>
+    }
+
     return (
-      <Task
-        key={el.id}
-        task={el}
-        togleTaskDone={togleTaskDone}
-        togleTaskPin={togleTaskPin}
-        deleteTask={deleteTask}
-        setContextMenu={setContextMenu}
-        showContextMenu={toDoId === el.id ? showContext : false}
-        showMemoMenu={toDoId === el.id ? showMemo : false}
-        editTaskMemo={editTaskMemo}
-      />
-    );
+      <div key={date}>
+        {dateElement}
+        {pinnedTaskElement}
+        <div className="tasks">
+          {unPinnedTasks}
+        </div>
+      </div>
+    )
   });
-
 
   return (
     <>
-      <div className="tasks tasks--pinned">
-        {pinnedTasksList}
-      </div>
-      <div className="tasks">
-        {unPinnedTasksList}
-      </div>
+      {groupTasksList}
     </>
   )
 }

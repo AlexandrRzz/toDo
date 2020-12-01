@@ -47,6 +47,12 @@
   font-size: 12px;
 }
 
+.tasks__date {
+  padding-top: 10px;
+  margin-left: 50px;
+  color: #9da5ae;
+}
+
 .custom-checkbox {
   position: absolute;
   z-index: -1;

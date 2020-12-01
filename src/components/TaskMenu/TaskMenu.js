@@ -2,8 +2,6 @@ import React from 'react';
 import './TaskMenu.css';
 
 export default function TaskMenu({setContextMenu, togleTaskPin, deleteTask, task_id, pinned, memo}) {
-  //console.log(props);
-  console.log(memo)
   return (
     <div className="menu">
       <div 
