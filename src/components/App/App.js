@@ -202,6 +202,29 @@ function App() {
     }); 
   }
 
+  function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('.');
+  }
+
+  function filterTodo(todos, dateFrom, dateTo) {
+    return todos.filter((todo)=> {
+        const formatedToDoDate = formatDate(todo.date);
+        const compareWithDateFrom = formatedToDoDate.localeCompare(formatDate(dateFrom));
+        const compareWithDateTo = formatedToDoDate.localeCompare(formatDate(dateTo));
+        return (compareWithDateFrom >= 0) && (compareWithDateTo <=0)
+    })
+  }
+
   return (
     <div className="App">
       <div className="wrapper">
@@ -224,7 +247,7 @@ function App() {
             enterNewTask={enterNewTask}
           />
           <Tasks 
-            tasks={toDoData.toDoTasks}
+            tasks={filterTodo(toDoData.toDoTasks, toDoData.fixInterval.dateStart, toDoData.fixInterval.dateEnd)}
             togleTaskDone={togleTaskDone}
             togleTaskPin={togleTaskPin}
             deleteTask={deleteTask}
