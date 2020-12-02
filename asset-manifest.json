@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/toDo/static/css/main.83249102.chunk.css",
+    "main.js": "/toDo/static/js/main.45cd5f14.chunk.js",
+    "main.js.map": "/toDo/static/js/main.45cd5f14.chunk.js.map",
+    "runtime-main.js": "/toDo/static/js/runtime-main.0c1557ff.js",
+    "runtime-main.js.map": "/toDo/static/js/runtime-main.0c1557ff.js.map",
+    "static/js/2.450d0ef9.chunk.js": "/toDo/static/js/2.450d0ef9.chunk.js",
+    "static/js/2.450d0ef9.chunk.js.map": "/toDo/static/js/2.450d0ef9.chunk.js.map",
+    "static/js/3.0ed32331.chunk.js": "/toDo/static/js/3.0ed32331.chunk.js",
+    "static/js/3.0ed32331.chunk.js.map": "/toDo/static/js/3.0ed32331.chunk.js.map",
+    "index.html": "/toDo/index.html",
+    "static/css/main.83249102.chunk.css.map": "/toDo/static/css/main.83249102.chunk.css.map",
+    "static/js/2.450d0ef9.chunk.js.LICENSE.txt": "/toDo/static/js/2.450d0ef9.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/toDo/static/media/Poppins-Regular.8081832f.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0c1557ff.js",
+    "static/js/2.450d0ef9.chunk.js",
+    "static/css/main.83249102.chunk.css",
+    "static/js/main.45cd5f14.chunk.js"
+  ]
+}
